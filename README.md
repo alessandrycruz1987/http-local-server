@@ -1,19 +1,84 @@
 # @cappitolian/http-local-server
 
-Runs a local HTTP server on your device, accessible over LAN. Supports connect, disconnect, GET, and POST methods with IP and port discovery.
+A Capacitor plugin to run a local HTTP server on your device, allowing you to receive and respond to HTTP requests directly from Angular/JavaScript.
 
-## Install
+---
+
+## Features
+
+- Embed a real HTTP server (NanoHTTPD on Android, GCDWebServer on iOS).
+- Receive requests via events and send responses back from the JS layer.
+- CORS support enabled by default for local communication.
+- Tested with **Capacitor 7** and **Ionic 8**.
+
+---
+
+## Installation
 
 ```bash
-npm install @cappitolian/http-local-server
+npm install @cappitolian/local-ip
 npx cap sync
 ```
 
-## API
+---
 
-<docgen-index></docgen-index>
+## Usage
 
-<docgen-api>
-<!-- run docgen to generate docs from the source -->
-<!-- More info: https://github.com/ionic-team/capacitor-docgen -->
-</docgen-api>
+### Import
+
+```typescript
+import { HttpLocalServer } from '@cappitolian/http-local-server';
+```
+
+### Listen and Respond
+
+```typescript
+// 1. Set up the listener for incoming requests
+HttpLocalServer.addListener('onRequest', async (request) => {
+  console.log('Request received:', request.path, request.body);
+
+  // 2. Send a response back to the client using the requestId
+  await HttpLocalServer.sendResponse({
+    requestId: request.requestId,
+    body: JSON.stringify({ message: "Hello from Ionic!" })
+  });
+});
+
+// 3. Start the server
+HttpLocalServer.connect().then(result => {
+  console.log('Server running at:', result.ip, 'Port:', result.port);
+});
+```
+
+### Stop Server
+
+```typescript
+HttpLocalServer.disconnect()
+```
+
+---
+
+## Platforms
+
+- **iOS** (Swift)
+- **Android** (Java)
+- **Web** (Returns mock values for development)
+
+---
+
+## Requirements
+
+- [Capacitor 7](https://capacitorjs.com/)
+- [Ionic 8](https://ionicframework.com/) (optional, but tested)
+
+---
+
+## License
+
+MIT
+
+---
+
+## Support
+
+If you have any issues or feature requests, please open an issue on the repository.
