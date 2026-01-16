@@ -16,7 +16,7 @@ A Capacitor plugin to run a local HTTP server on your device, allowing you to re
 ## Installation
 
 ```bash
-npm install @cappitolian/local-ip
+npm install @cappitolian/http-local-server
 npx cap sync
 ```
 
