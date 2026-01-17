@@ -27,6 +27,7 @@ public protocol HttpLocalServerDelegate: AnyObject {
 
 // MARK: - HttpLocalServer
 @objc public class HttpLocalServer: NSObject {
+    
     // MARK: - Properties
     private var webServer: GCDWebServer?
     private weak var delegate: HttpLocalServerDelegate?
@@ -194,7 +195,8 @@ public protocol HttpLocalServerDelegate: AnyObject {
             "path": path
         ]
         
-        if let body = body {
+        // Solo agregar si existen (consistente con TypeScript y Android)
+        if let body = body, !body.isEmpty {
             requestData["body"] = body
         }
         
