@@ -1,6 +1,6 @@
 {
   "name": "@cappitolian/http-local-server",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "Runs a local HTTP server on your device, accessible over LAN. Supports connect, disconnect, GET, and POST methods with IP and port discovery.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -19,7 +19,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alessandrycruz1987/http-local-server.git.git"
+    "url": "git+https://github.com/alessandrycruz1987/http-local-server.git"
   },
   "bugs": {
     "url": "https://github.com/alessandrycruz1987/http-local-server.git/issues"
